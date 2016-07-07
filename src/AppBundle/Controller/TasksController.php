@@ -4,10 +4,13 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Task;
 use AppBundle\Form\Type\TaskType;
+use FOS\RestBundle\View\View;
+use FOS\RestBundle\Controller\Annotations\Delete;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Post;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\FOSRestController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
 
@@ -78,5 +81,35 @@ class TasksController extends FOSRestController
         return array(
             'form' => $form,
         );
+    }
+
+    /**
+     * Removes a task
+     *
+     * @param Task $id Task id
+     * @return view
+     * @ApiDoc(
+     *   resource = true,
+     *   statusCodes={
+     *     204="Returned when successful",
+     *     404 = "Returned when the task not found"
+     *   }
+     * )
+     *
+     * @Delete("tasks/{id}")
+     */
+    public function deleteAction(Task $id)
+    {
+        $task =  $this->getDoctrine()->getRepository('AppBundle:Task')->find($id);
+
+        if ($task === null) {
+            return new View(null, Response::HTTP_NOT_FOUND);
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($task);
+        $em->flush();
+
+        return new View(null, Response::HTTP_NO_CONTENT);
     }
 }
