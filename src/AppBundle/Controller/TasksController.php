@@ -19,7 +19,7 @@ class TasksController extends FOSRestController
      *     output="AppBundle\Entity\Task",
      *     statusCodes={
      *         200 = "Returned when successful",
-     *         404 = "Return when not found task"
+     *         404 = "Return when not found"
      *     }
      * )
      * @Get("singleTask/{id}")
@@ -27,5 +27,21 @@ class TasksController extends FOSRestController
     public function getSingleTaskAction(Task $id)
     {
         return $this->getDoctrine()->getRepository('AppBundle:Task')->find($id);
+    }
+
+    /**
+     * Gets all tasks
+     * @ApiDoc(
+     *     output="AppBundle\Entity\Task",
+     *     statusCodes={
+     *         200 = "Returned when successful",
+     *         404 = "Return when not found"
+     *     }
+     * )
+     * @Get("tasks/")
+     */
+    public function getAllTasksAction()
+    {
+        return $this->getDoctrine()->getRepository('AppBundle:Task')->findAll();
     }
 }
