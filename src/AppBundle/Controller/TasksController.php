@@ -7,13 +7,12 @@ use FOS\RestBundle\Controller\Annotations\Get;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\FOSRestController;
 
-
 class TasksController extends FOSRestController
 {
     /**
      * Gets an task by id
      *
-     * @param Task $id
+     * @param Task $id Task id
      * @return mixed
      * @ApiDoc(
      *     output="AppBundle\Entity\Task",
@@ -22,7 +21,7 @@ class TasksController extends FOSRestController
      *         404 = "Return when not found"
      *     }
      * )
-     * @Get("singleTask/{id}")
+     * @Get("tasks/{id}")
      */
     public function getSingleTaskAction(Task $id)
     {
@@ -31,6 +30,7 @@ class TasksController extends FOSRestController
 
     /**
      * Gets all tasks
+     * @return Task
      * @ApiDoc(
      *     output="AppBundle\Entity\Task",
      *     statusCodes={
@@ -40,7 +40,7 @@ class TasksController extends FOSRestController
      * )
      * @Get("tasks/")
      */
-    public function getAllTasksAction()
+    public function getAction()
     {
         return $this->getDoctrine()->getRepository('AppBundle:Task')->findAll();
     }
