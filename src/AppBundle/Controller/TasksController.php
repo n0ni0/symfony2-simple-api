@@ -4,16 +4,19 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Task;
 use AppBundle\Form\Type\TaskType;
+use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\View\View;
-use FOS\RestBundle\Controller\Annotations\Delete;
-use FOS\RestBundle\Controller\Annotations\Get;
-use FOS\RestBundle\Controller\Annotations\Post;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
-
+/**
+ *
+ * @package AppBundle\Controller
+ *
+ * @RouteResource("tasks")
+ */
 class TasksController extends FOSRestController
 {
     /**
@@ -28,9 +31,8 @@ class TasksController extends FOSRestController
      *         404 = "Return when not found"
      *     }
      * )
-     * @Get("tasks/{id}")
      */
-    public function getSingleTaskAction(Task $id)
+    public function getAction(Task $id)
     {
         return $this->getDoctrine()->getRepository('AppBundle:Task')->find($id);
     }
@@ -45,17 +47,18 @@ class TasksController extends FOSRestController
      *         404 = "Return when not found"
      *     }
      * )
-     * @Get("tasks/")
      */
-    public function getTaskAction()
+    public function cgetAction()
     {
         return $this->getDoctrine()->getRepository('AppBundle:Task')->findAll();
     }
 
     /**
      * Create new task
+     *
      * @var Request $request
      * @return array
+     *
      * @ApiDoc(
      *     output="AppBundle\Entity\Task",
      *     statusCodes={
@@ -63,7 +66,6 @@ class TasksController extends FOSRestController
      *         404 = "Returned when the form has errors"
      *     }
      * )
-     * @Post("tasks/")
      */
     public function postAction(Request $request)
     {
@@ -96,7 +98,6 @@ class TasksController extends FOSRestController
      *   }
      * )
      *
-     * @Delete("tasks/{id}")
      */
     public function deleteAction(Task $id)
     {
