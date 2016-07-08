@@ -85,6 +85,39 @@ class TasksController extends FOSRestController
         );
     }
 
+
+    /**
+     * Edit all task fields
+     * @param Request $request
+     * @param Task $id
+     * @return array
+     *
+     * @ApiDoc(
+     *     input="AppBundle\Form\Type\TaskType",
+     *     output ="AppBundle\Entity\Task",
+     *     statusCodes={
+     *         204 = "Returned when updated",
+     *         400 = "Return when errors",
+     *         404 = "Return when not found"
+     *     }
+     * )
+     *
+     */
+    public function putAction(Request $request, Task $id)
+    {
+        $task = $this->getDoctrine()->getRepository('AppBundle:Task')->find($id);
+        $form = $this->createForm(new TaskType(), $task);
+        $form->submit($request->request->all());
+
+        if (!$form->isValid()) {
+            return $form;
+        }
+        $em = $this->getDoctrine()->getManager();
+        $em->flush();
+
+        return array("task" => $task);
+    }
+
     /**
      * Removes a task
      *
