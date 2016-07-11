@@ -65,13 +65,6 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
-# Faker Configuration
-bazinga_faker:
-    orm: doctrine
-    entities:
-        AppBundle\Entity\Task:
-            number: 30
-
 #FOSRestBundle Configuration
 fos_rest:
     view:
