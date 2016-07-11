@@ -176,6 +176,6 @@ class TasksController extends FOSRestController
         $em->remove($task);
         $em->flush();
 
-        return new View(null, Response::HTTP_NO_CONTENT);
+        return new View(null, Response::HTTP_ACCEPTED);
     }
 }
