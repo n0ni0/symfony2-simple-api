@@ -70,7 +70,7 @@ class TasksController extends FOSRestController
     public function postAction(Request $request)
     {
         $task = new Task();
-        $form = $this->createForm(new TaskType(), $task);
+        $form = $this->createForm(TaskType::class, $task);
         $form->submit($request->request->all());
 
         if ($form->isValid()) {
@@ -106,7 +106,7 @@ class TasksController extends FOSRestController
     public function putAction(Request $request, Task $id)
     {
         $task = $this->getDoctrine()->getRepository('AppBundle:Task')->find($id);
-        $form = $this->createForm(new TaskType(), $task);
+        $form = $this->createForm(TaskType::class, $task);
         $form->submit($request->request->all());
 
         if (!$form->isValid()) {
@@ -138,7 +138,7 @@ class TasksController extends FOSRestController
     public function patchAction(Request $request, Task $id)
     {
         $task = $this->getDoctrine()->getRepository('AppBundle:Task')->find($id);
-        $form = $this->createForm(new TaskType(), $task);
+        $form = $this->createForm(TaskType::class, $task);
         $form->submit($request->request->all(), false);
 
         if (!$form->isValid()) {

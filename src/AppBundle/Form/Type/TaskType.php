@@ -25,9 +25,4 @@ class TaskType extends AbstractType
             'data-class' => 'AppBundle\Entity\Task'
         ));
     }
-
-    public function getName()
-    {
-        return 'app_task';
-    }
 }
