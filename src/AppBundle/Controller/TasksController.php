@@ -96,7 +96,7 @@ class TasksController extends FOSRestController
      *     input="AppBundle\Form\Type\TaskType",
      *     output ="AppBundle\Entity\Task",
      *     statusCodes={
-     *         204 = "Returned when updated",
+     *         200 = "Returned when updated",
      *         400 = "Return when errors",
      *         404 = "Return when not found"
      *     }
@@ -128,7 +128,7 @@ class TasksController extends FOSRestController
      *     input="AppBundle\Form\Type\TaskType",
      *     output ="AppBundle\Entity\Task",
      *     statusCodes={
-     *         204 = "Returned when updated",
+     *         200 = "Returned when updated",
      *         400 = "Return when errors",
      *         404 = "Return when not found"
      *     }
