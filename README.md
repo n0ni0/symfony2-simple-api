@@ -1,12 +1,11 @@
 Symfony2 simple api  
 ===
 
-[![Build Status](https://travis-ci.org/n0ni0/symfony2-simple-api.svg?branch=master)](https://travis-ci.org/n0ni0/symfony2-simple-api) 
-[![Coverage Status](https://coveralls.io/repos/github/n0ni0/symfony2-simple-api/badge.svg?branch=master)](https://coveralls.io/github/n0ni0/symfony2-simple-api?branch=master)
-
+Secured branch
+--
 
 This project create a simple rest api using symfony2.  
-No authentication required and only return json.  
+Use FOSOauthServerBundle to secured routes  
 
 **Installation**
 -----------------
