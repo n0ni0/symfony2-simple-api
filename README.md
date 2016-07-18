@@ -7,6 +7,10 @@ Symfony2 simple api
 
 This project create a simple rest api using symfony2.  
 No authentication required and only return json.  
+  
+
+> **[Secured branch with FOSOauthServerBundle](https://github.com/n0ni0/symfony2-simple-api/tree/secured)**
+
 
 **Installation**
 -----------------
